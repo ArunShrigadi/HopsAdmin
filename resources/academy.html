@@ -1,0 +1,711 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cvent Academy | Training & Certification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Nunito Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#004b87',
+                            dark: '#0f172a',
+                            navy: '#0b2646',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        .academy-hero-gradient {
+            background: linear-gradient(135deg, #004b87 0%, #004dc9 100%);
+        }
+
+        .blob-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            background: linear-gradient(45deg, #e0e7ff 0%, #ede9fe 100%);
+        }
+    </style>
+</head>
+
+<body class="antialiased min-h-screen flex flex-col font-sans text-gray-800">
+
+    <!-- Top Blue Promo Banner -->
+    <div class="bg-[#0042a5] text-white text-[13px] text-center py-2.5 px-4 font-medium tracking-wide">
+        See how Cvent can solve your biggest event challenges. <a href="#" class="underline font-bold hover:text-blue-200">Watch a 10-minute demo</a>
+    </div>
+
+    <!-- Global White Header -->
+    <header class="bg-white border-b border-gray-200 h-16 sticky top-0 z-50 flex items-center justify-between px-6">
+        <div class="flex items-center space-x-6 lg:space-x-10">
+            <a href="../index.html" class="flex items-center">
+                <img src="../assets/images/logo.png" alt="Cvent" class="h-6" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/4/4b/Cvent_logo.svg'">
+            </a>
+            <nav class="hidden lg:flex gap-6 text-[16px] h-full items-center">
+    <!-- Products Dropdown -->
+    <div class="group h-full flex items-center">
+        <a href="../products/event-marketing-operations.html" class="relative h-full px-3 flex items-center gap-2 rounded-xl text-[#080b3f] font-bold transition-colors group-hover:bg-[#fff8f5] group-hover:text-[#f26522]">
+            Products
+            <svg class="w-4 h-4 text-[#5f6b7a] group-hover:text-[#f26522] group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            <span class="absolute left-0 right-0 -bottom-px h-[3px] bg-[#f26522] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+        </a>
+        <div class="absolute left-0 top-full w-full bg-white border-t border-[#e5ebf5] opacity-0 invisible group-hover:opacity-100 group-hover:visible pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-[80] shadow-[0_18px_35px_rgba(15,23,42,0.08)] overflow-hidden">
+            <div class="max-w-[1920px] mx-auto grid grid-cols-[1fr_450px] min-h-[360px]">
+                <div class="grid grid-cols-3 gap-10 py-8 pl-[4vw] pr-8">
+                    <div>
+                        <div class="flex items-center gap-3 mb-5 text-[12px] font-extrabold tracking-wide uppercase text-[#5d6978]"><svg class="w-4 h-4 text-[#f26522]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 4h8v5H8z"></path><path d="M12 9v11"></path><path d="M6 20h12"></path><path d="M5 7h3"></path><path d="M16 7h3"></path></svg><span>Before your events</span></div>
+                        <ul class="space-y-3">
+                            <li><a href="../products/event-marketing-operations.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Registration &amp; marketing</a></li>
+                            <li><a href="../products/conferences.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Venue sourcing</a></li>
+                            <li><a href="../products/conferences.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Event diagramming</a></li>
+                            <li><a href="../products/cvent-events-plus.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Repeatable events</a></li>
+                            <li><a href="../products/corporate-travel-management.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Hotel room blocks</a></li>
+                            <li><a href="../products/event-marketing-operations.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Approvals &amp; budgeting</a></li>
+                            <li><a href="../products/conferences.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Speaker management</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-3 mb-5 text-[12px] font-extrabold tracking-wide uppercase text-[#5d6978]"><svg class="w-4 h-4 text-[#f07f7f]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 4h10v4H7z"></path><path d="M5 8h14v12H5z"></path><path d="m9 15 2 2 4-5"></path></svg><span>During your events</span></div>
+                        <ul class="space-y-3">
+                            <li><a href="../products/in-person-events.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Event app</a></li>
+                            <li><a href="../products/in-person-events.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Check-in &amp; badging</a></li>
+                            <li><a href="../products/networking-events.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Attendee engagement</a></li>
+                            <li><a href="../products/trade-shows.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Trade show lead capture</a></li>
+                            <li><a href="../products/trade-shows.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Trade show meetings</a></li>
+                            <li><a href="../products/virtual-events.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Virtual experience</a></li>
+                            <li><a href="../products/webinar.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Webinars</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-3 mb-5 text-[12px] font-extrabold tracking-wide uppercase text-[#5d6978]"><svg class="w-4 h-4 text-[#35c286]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5"></path><path d="M4 19h16"></path><path d="m7 15 4-4 3 3 5-7"></path></svg><span>After your events</span></div>
+                        <ul class="space-y-3">
+                            <li><a href="../products/event-marketing-operations.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Event &amp; attendee insights</a></li>
+                            <li><a href="../products/event-marketing-operations.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Integrations</a></li>
+                            <li><a href="../products/event-marketing-operations.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Surveys</a></li>
+                            <li><a href="../products/trade-shows.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">Lead retrieval</a></li>
+                            <li><a href="../products/cvent-events-plus.html" class="block text-[17px] leading-snug font-bold text-[#080b3f] hover:text-[#f26522]">AI content repurposing</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-r from-[#fafcff] via-[#f6f9ff] to-[#dcecff] border-l border-[#e3e9f4] py-8 px-8">
+                    <div class="flex items-center gap-3 mb-4 text-[18px] font-extrabold text-[#6d7484]"><svg class="w-4 h-4 text-[#f26522]" fill="currentColor" viewBox="0 0 20 20"><path d="m10 1.6 2.5 5.1 5.6.8-4 4 1 5.5-5.1-2.7L4.9 17l1-5.5-4-4 5.6-.8L10 1.6z"></path></svg>Featured</div>
+                    <div class="space-y-3">
+                        <a href="../products/event-marketing-operations.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#e65c00] via-[#004b87] to-[#f26522]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><circle cx="24" cy="24" r="16" stroke-dasharray="5 5"></circle><path d="M24 12v24M16 24h16"></path></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">Event management</strong><span class="text-[13px] text-[#1f285c]">Manage your entire event lifecycle</span></span></span></a>
+                        <a href="../products/event-marketing-operations.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#e65c00] via-[#004b87] to-[#f26522]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><path d="M24 7 8 17l16 10 16-10L24 7z"></path><path d="M12 25v10l12 6 12-6V25"></path></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">Event marketing</strong><span class="text-[13px] text-[#1f285c]">Turn events into your top marketing channel</span></span></span></a>
+                        <a href="../products/cvent-events-plus.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#e65c00] via-[#004b87] to-[#f26522]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><path d="M10 35c4-7 24-7 28 0"></path><circle cx="16" cy="18" r="5"></circle><circle cx="32" cy="18" r="5"></circle></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">Cvent Essentials</strong><span class="text-[13px] text-[#1f285c]">Simplify your repeatable in-person events</span></span></span></a>
+                        <a href="../products/cvent-events-plus.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#e65c00] via-[#004b87] to-[#f26522]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="currentColor"><path d="M25 6l3.6 10.4L39 20l-10.4 3.6L25 34l-3.6-10.4L11 20l10.4-3.6L25 6zM13 30l1.7 5.3L20 37l-5.3 1.7L13 44l-1.7-5.3L6 37l5.3-1.7L13 30z"></path></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">AI for events</strong><span class="text-[13px] text-[#1f285c]">Make every event smarter with CventIQ</span></span></span></a>
+                        <a href="../products/event-marketing-operations.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#e65c00] via-[#004b87] to-[#f26522]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><path d="M14 6h20v36H14z"></path><path d="M19 16h10M19 24h10M19 32h6"></path><path d="M33 17h5v12h-5"></path></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">Pricing</strong><span class="text-[13px] text-[#1f285c]">Learn about our pricing structure</span></span></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Event types Dropdown -->
+    <div class="group h-full flex items-center">
+        <a href="../event-types/complex-events.html" class="relative h-full px-3 flex items-center gap-2 rounded-xl text-[#080b3f] font-bold transition-colors group-hover:bg-[#fff8f5] group-hover:text-[#f26522]">
+            Event types
+            <svg class="w-4 h-4 text-[#5f6b7a] group-hover:text-[#f26522] group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            <span class="absolute left-0 right-0 -bottom-px h-[3px] bg-[#f26522] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+        </a>
+        <div class="absolute left-0 top-full w-full bg-white border-t border-[#e5ebf5] opacity-0 invisible group-hover:opacity-100 group-hover:visible pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-[80] shadow-[0_18px_35px_rgba(15,23,42,0.08)] overflow-hidden">
+            <div class="max-w-[1920px] mx-auto grid grid-cols-[1fr_360px] min-h-[340px]">
+                <div class="grid grid-cols-4 gap-7 py-8 pl-[4vw] pr-7">
+                    <div><div class="flex items-center gap-3 mb-5 text-[12px] font-extrabold tracking-wide uppercase text-[#5d6978]"><svg class="w-4 h-4 text-[#30c77a]" fill="currentColor" viewBox="0 0 20 20"><path d="M10.7 2.3a1 1 0 0 0-1.4 0l-7 7 1.4 1.4.3-.3V17h4v-4h4v4h4v-6.6l.3.3 1.4-1.4-7-7z"></path></svg>Your industry</div><ul class="space-y-3"><li><a href="../event-types/agencies-and-partners.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Agency</a></li><li><a href="../event-types/association.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Association</a></li><li><a href="../event-types/financial-services.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Financial services</a></li><li><a href="../event-types/higher-education.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Higher education</a></li><li><a href="../event-types/life-sciences.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Life sciences</a></li><li><a href="../event-types/technology.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Technology</a></li><li><a href="../event-types/agencies-and-partners.html" class="inline-flex items-center text-[13px] font-bold text-[#f26522]">See all industries <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg></a></li></ul></div>
+                    <div><div class="flex items-center gap-3 mb-5 text-[12px] font-extrabold tracking-wide uppercase text-[#5d6978]"><svg class="w-4 h-4 text-[#8b5cf6]" fill="currentColor" viewBox="0 0 20 20"><path d="M5 3h4v4H5zM11 3h4v4h-4zM5 9h4v4H5zM11 9h4v4h-4z"></path></svg>Your format</div><ul class="space-y-3"><li><a href="../event-types/in-person.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">In-person</a></li><li><a href="../event-types/hybrid-events.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Hybrid</a></li><li><a href="../event-types/virtual-events.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Virtual</a></li><li><a href="../event-types/webinars.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Webinar</a></li></ul></div>
+                    <div><div class="flex items-center gap-3 mb-5 text-[12px] font-extrabold tracking-wide uppercase text-[#5d6978]"><svg class="w-4 h-4 text-[#fb923c]" fill="currentColor" viewBox="0 0 20 20"><path d="M6 2h2v2h4V2h2v2h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V2zm9 7H5v7h10V9z"></path></svg>Your event</div><ul class="space-y-3"><li><a href="../event-types/complex-events.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Conference</a></li><li><a href="../event-types/field-marketing.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Field marketing</a></li><li><a href="../event-types/internal-events.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Internal event</a></li><li><a href="../event-types/networking-events.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Networking</a></li><li><a href="../event-types/sales-kickoffs.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Sales kickoff</a></li><li><a href="../event-types/trade-shows.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Trade show</a></li></ul></div>
+                    <div><div class="flex items-center gap-3 mb-5 text-[12px] font-extrabold tracking-wide uppercase text-[#5d6978]"><svg class="w-4 h-4 text-[#60a5fa]" fill="currentColor" viewBox="0 0 20 20"><path d="M7 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 17a5 5 0 0 1 10 0H2zm8.5-5.6A5 5 0 0 1 18 17h-4a6.9 6.9 0 0 0-3.5-5.6z"></path></svg>Your role</div><ul class="space-y-3"><li><a href="../event-types/marketing-operations.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Event planner</a></li><li><a href="../event-types/marketing-managers.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Marketing manager</a></li><li><a href="../event-types/marketing-operations.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Marketing operations</a></li><li><a href="../event-types/demand-generation.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Demand generation</a></li><li><a href="../event-types/corporate-travel.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Travel manager</a></li></ul></div>
+                </div>
+                <div class="bg-[#f8fafc] border-l border-[#e3e9f4] py-8 px-8">
+                    <img src="../assets/images/14.webp" alt="Event planning and marketing" class="w-full h-[135px] object-cover rounded-xl shadow-sm mb-6">
+                    <h3 class="text-[20px] font-extrabold text-[#080b3f] leading-tight mb-4">Event planning and marketing in one place</h3>
+                    <p class="text-[13px] leading-relaxed text-[#3f4a63] mb-6">Cvent's software helps you manage every stage of the event process.</p>
+                    <a href="../event-types/complex-events.html" class="inline-flex items-center justify-center rounded-md border-2 border-[#f26522] px-4 py-2 text-[13px] font-bold text-[#f26522] hover:bg-[#f26522] hover:text-white transition-colors">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Resources Dropdown -->
+    <div class="group h-full flex items-center">
+        <a href="../resources/all-resources.html" class="relative h-full px-3 flex items-center gap-2 rounded-xl text-[#080b3f] font-bold transition-colors group-hover:bg-[#fff8f5] group-hover:text-[#f26522]">
+            Resources
+            <svg class="w-4 h-4 text-[#5f6b7a] group-hover:text-[#f26522] group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+            <span class="absolute left-0 right-0 -bottom-px h-[3px] bg-[#f26522] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
+        </a>
+        <div class="absolute left-0 top-full w-full bg-white border-t border-[#e5ebf5] opacity-0 invisible group-hover:opacity-100 group-hover:visible pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-[80] shadow-[0_18px_35px_rgba(15,23,42,0.08)] overflow-hidden">
+            <div class="max-w-[1920px] mx-auto grid grid-cols-[1fr_360px] min-h-[330px]">
+                <div class="grid grid-cols-3 gap-10 py-8 pl-[4vw] pr-8">
+                    <div><div class="flex items-center gap-3 mb-5 text-[12px] font-extrabold tracking-wide uppercase text-[#5d6978]"><svg class="w-4 h-4 text-[#f26522]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h10"></path></svg>Explore</div><ul class="space-y-3"><li><a href="../resources/all-resources.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">All resources</a></li><li><a href="../resources/blog.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Blog</a></li><li><a href="../resources/case-studies.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Case studies</a></li><li><a href="../resources/podcast.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Podcast</a></li><li><a href="../resources/upcoming-events.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Upcoming events</a></li><li><a href="../resources/upcoming-events.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Upcoming webinars</a></li></ul></div>
+                    <div><div class="flex items-center gap-3 mb-5 text-[12px] font-extrabold tracking-wide uppercase text-[#5d6978]"><svg class="w-4 h-4 text-[#35c286]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V6"></path><path d="M5 9c3-3 11-3 14 0v10c-3-3-11-3-14 0V9z"></path></svg>Learn</div><ul class="space-y-3"><li><a href="../resources/community.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Community</a></li><li><a href="../resources/certifications.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Certification</a></li><li><a href="../resources/academy.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Training</a></li></ul></div>
+                    <div><div class="flex items-center gap-3 mb-5 text-[12px] font-extrabold tracking-wide uppercase text-[#5d6978]"><svg class="w-4 h-4 text-[#f59e0b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a7 7 0 0 0-7 7v4a3 3 0 0 0 3 3h1v-6H7v-1a5 5 0 0 1 10 0v1h-2v6h1a3 3 0 0 0 3-3v-4a7 7 0 0 0-7-7z"></path><path d="M10 21h4"></path></svg>Get help</div><ul class="space-y-3"><li><a href="../resources/knowledge-base.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Knowledge Base</a></li><li><a href="../resources/professional-services.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Professional Services</a></li><li><a href="../resources/security.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Security</a></li><li><a href="../resources/support.html" class="block text-[17px] font-bold text-[#080b3f] hover:text-[#f26522]">Support</a></li></ul></div>
+                </div>
+                <div class="bg-[#f8fafc] border-l border-[#e3e9f4] py-8 px-8">
+                    <img src="../assets/images/10.webp" alt="Interactive demo library UI" class="w-full h-[135px] object-cover rounded-xl shadow-sm mb-6">
+                    <h3 class="text-[20px] font-extrabold text-[#080b3f] leading-tight mb-4">Interactive demo library</h3>
+                    <p class="text-[13px] leading-relaxed text-[#3f4a63] mb-6">Take a self-guided tour to see how Cvent works.</p>
+                    <a href="../resources/all-resources.html" class="inline-flex items-center justify-center rounded-md border-2 border-[#f26522] px-4 py-2 text-[13px] font-bold text-[#f26522] hover:bg-[#f26522] hover:text-white transition-colors">Take a tour</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+        </div>
+        <div class="hidden lg:flex items-center space-x-5 text-[14px] font-semibold">
+            <a href="#" class="text-[#f26522] border border-[#f26522] rounded-full px-5 py-1.5 hover:bg-blue-50 transition-colors">Request demo</a>
+            <a href="#" class="text-gray-700 hover:text-brand-blue transition-colors">Find event venues</a>
+            <div class="h-4 w-px bg-gray-300"></div>
+            <a href="#" class="text-gray-700 hover:text-brand-blue transition-colors flex items-center">
+                <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </a>
+        </div>
+        <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button type="button" class="js-mobile-menu-toggle inline-flex h-10 w-10 items-center justify-center rounded-full text-[#0f172a] hover:bg-[#eef5ff] focus:outline-none focus:ring-2 focus:ring-[#f26522]" aria-controls="mobile-mega-menu" aria-expanded="false" aria-label="Open navigation menu">
+                        <svg class="js-menu-open-icon h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M4 7h16M4 12h16M4 17h16" />
+                        </svg>
+                        <svg class="js-menu-close-icon hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-mega-menu" class="js-mobile-menu hidden lg:hidden absolute left-0 right-0 top-full z-[90] h-[calc(100vh-72px)] border-t border-gray-100 bg-white shadow-[0_18px_40px_rgba(15,23,42,0.16)]">
+        <div class="h-full overflow-y-auto px-4 py-4 sm:px-6">
+            <div class="space-y-3">
+                <details class="group rounded-2xl border border-[#e6edf7] bg-[#f8fbff] open:bg-white open:shadow-sm">
+                    <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-[16px] font-extrabold text-[#080b3f]">
+                        <span>Products</span>
+                        <svg class="h-5 w-5 text-[#64748b] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <div class="border-t border-[#e6edf7] px-4 pb-4 pt-3">
+                        <div class="grid gap-4 sm:grid-cols-3">
+                            <div>
+                                <div class="mb-2 flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wide text-[#64748b]"><span class="h-2 w-2 rounded-full bg-[#1688f2]"></span>Before</div>
+                                <ul class="space-y-2.5 text-[14px] font-bold text-[#080b3f]"><li><a href="../products/event-marketing-operations.html" class="hover:text-[#f26522]">Registration &amp; marketing</a></li><li><a href="../products/conferences.html" class="hover:text-[#f26522]">Venue sourcing</a></li><li><a href="../products/conferences.html" class="hover:text-[#f26522]">Event diagramming</a></li><li><a href="../products/cvent-events-plus.html" class="hover:text-[#f26522]">Repeatable events</a></li><li><a href="../products/corporate-travel-management.html" class="hover:text-[#f26522]">Hotel room blocks</a></li></ul>
+                            </div>
+                            <div>
+                                <div class="mb-2 flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wide text-[#64748b]"><span class="h-2 w-2 rounded-full bg-[#f07f7f]"></span>During</div>
+                                <ul class="space-y-2.5 text-[14px] font-bold text-[#080b3f]"><li><a href="../products/in-person-events.html" class="hover:text-[#f26522]">Event app</a></li><li><a href="../products/in-person-events.html" class="hover:text-[#f26522]">Check-in &amp; badging</a></li><li><a href="../products/networking-events.html" class="hover:text-[#f26522]">Attendee engagement</a></li><li><a href="../products/virtual-events.html" class="hover:text-[#f26522]">Virtual experience</a></li><li><a href="../products/webinar.html" class="hover:text-[#f26522]">Webinars</a></li></ul>
+                            </div>
+                            <div>
+                                <div class="mb-2 flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-wide text-[#64748b]"><span class="h-2 w-2 rounded-full bg-[#35c286]"></span>After</div>
+                                <ul class="space-y-2.5 text-[14px] font-bold text-[#080b3f]"><li><a href="../products/event-marketing-operations.html" class="hover:text-[#f26522]">Event insights</a></li><li><a href="../products/event-marketing-operations.html" class="hover:text-[#f26522]">Integrations</a></li><li><a href="../products/event-marketing-operations.html" class="hover:text-[#f26522]">Surveys</a></li><li><a href="../products/trade-shows.html" class="hover:text-[#f26522]">Lead retrieval</a></li><li><a href="../products/cvent-events-plus.html" class="hover:text-[#f26522]">AI content</a></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="group rounded-2xl border border-[#e6edf7] bg-[#f8fbff] open:bg-white open:shadow-sm">
+                    <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-[16px] font-extrabold text-[#080b3f]">
+                        <span>Event types</span>
+                        <svg class="h-5 w-5 text-[#64748b] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <div class="border-t border-[#e6edf7] px-4 pb-4 pt-3">
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            <div><div class="mb-2 text-[11px] font-extrabold uppercase tracking-wide text-[#64748b]">Your industry</div><ul class="space-y-2.5 text-[14px] font-bold text-[#080b3f]"><li><a href="../event-types/agencies-and-partners.html">Agency</a></li><li><a href="../event-types/association.html">Association</a></li><li><a href="../event-types/financial-services.html">Financial services</a></li><li><a href="../event-types/higher-education.html">Higher education</a></li><li><a href="../event-types/life-sciences.html">Life sciences</a></li><li><a href="../event-types/technology.html">Technology</a></li></ul></div>
+                            <div><div class="mb-2 text-[11px] font-extrabold uppercase tracking-wide text-[#64748b]">Your format</div><ul class="space-y-2.5 text-[14px] font-bold text-[#080b3f]"><li><a href="../event-types/in-person.html">In-person</a></li><li><a href="../event-types/hybrid-events.html">Hybrid</a></li><li><a href="../event-types/virtual-events.html">Virtual</a></li><li><a href="../event-types/webinars.html">Webinar</a></li></ul></div>
+                            <div><div class="mb-2 text-[11px] font-extrabold uppercase tracking-wide text-[#64748b]">Your event</div><ul class="space-y-2.5 text-[14px] font-bold text-[#080b3f]"><li><a href="../event-types/complex-events.html">Conference</a></li><li><a href="../event-types/field-marketing.html">Field marketing</a></li><li><a href="../event-types/internal-events.html">Internal event</a></li><li><a href="../event-types/networking-events.html">Networking</a></li><li><a href="../event-types/sales-kickoffs.html">Sales kickoff</a></li><li><a href="../event-types/trade-shows.html">Trade show</a></li></ul></div>
+                            <div><div class="mb-2 text-[11px] font-extrabold uppercase tracking-wide text-[#64748b]">Your role</div><ul class="space-y-2.5 text-[14px] font-bold text-[#080b3f]"><li><a href="../event-types/marketing-operations.html">Event planner</a></li><li><a href="../event-types/marketing-managers.html">Marketing manager</a></li><li><a href="../event-types/marketing-operations.html">Marketing operations</a></li><li><a href="../event-types/demand-generation.html">Demand generation</a></li><li><a href="../event-types/corporate-travel.html">Travel manager</a></li></ul></div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="group rounded-2xl border border-[#e6edf7] bg-[#f8fbff] open:bg-white open:shadow-sm">
+                    <summary class="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-[16px] font-extrabold text-[#080b3f]">
+                        <span>Resources</span>
+                        <svg class="h-5 w-5 text-[#64748b] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                    </summary>
+                    <div class="border-t border-[#e6edf7] px-4 pb-4 pt-3">
+                        <div class="grid gap-4 sm:grid-cols-3">
+                            <div><div class="mb-2 text-[11px] font-extrabold uppercase tracking-wide text-[#64748b]">Explore</div><ul class="space-y-2.5 text-[14px] font-bold text-[#080b3f]"><li><a href="../resources/all-resources.html">All resources</a></li><li><a href="../resources/blog.html">Blog</a></li><li><a href="../resources/case-studies.html">Case studies</a></li><li><a href="../resources/podcast.html">Podcast</a></li><li><a href="../resources/upcoming-events.html">Upcoming events</a></li></ul></div>
+                            <div><div class="mb-2 text-[11px] font-extrabold uppercase tracking-wide text-[#64748b]">Learn</div><ul class="space-y-2.5 text-[14px] font-bold text-[#080b3f]"><li><a href="../resources/community.html">Community</a></li><li><a href="../resources/certifications.html">Certification</a></li><li><a href="../resources/academy.html">Training</a></li></ul></div>
+                            <div><div class="mb-2 text-[11px] font-extrabold uppercase tracking-wide text-[#64748b]">Get help</div><ul class="space-y-2.5 text-[14px] font-bold text-[#080b3f]"><li><a href="../resources/knowledge-base.html">Knowledge Base</a></li><li><a href="../resources/professional-services.html">Professional Services</a></li><li><a href="../resources/security.html">Security</a></li><li><a href="../resources/support.html">Support</a></li></ul></div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            <div class="mt-4 grid gap-3 border-t border-gray-100 pt-4 text-[14px] font-bold sm:grid-cols-2">
+                <a href="../resources/all-resources.html" class="inline-flex items-center justify-center rounded-full border border-[#f26522] px-4 py-2.5 text-[#f26522]">Request demo</a>
+                <a href="../products/conferences.html" class="inline-flex items-center justify-center rounded-full bg-[#f1f5f9] px-4 py-2.5 text-[#334155]">Find event venues</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <!-- Resource Hero -->
+    <section class="relative overflow-hidden bg-white border-b border-[#e6edf7]">
+        <div class="absolute inset-y-0 right-0 hidden w-1/2 lg:block" style="background: linear-gradient(135deg, #edfdf7, #ffffff 52%, #f6f8ff);"></div>
+        <div class="relative max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+            <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+                <div>
+                    <div class="mb-4 text-[13px] font-extrabold uppercase tracking-[0.16em]" style="color:#f26522">CVENT ACADEMY</div>
+                    <h1 class="max-w-[780px] text-[40px] leading-[1.05] font-extrabold tracking-tight text-[#080b3f] sm:text-[54px] lg:text-[64px]">Level up your Cvent expertise</h1>
+                    <p class="mt-6 max-w-[680px] text-[18px] leading-[1.65] font-semibold text-[#41516a]">Build product confidence with training resources designed for different roles and learning styles.</p>
+                    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                        <a href="../resources/all-resources.html" class="inline-flex items-center justify-center rounded-md px-6 py-3 text-[15px] font-extrabold text-white shadow-sm" style="background:#f26522">Browse resources</a>
+                        <a href="../resources/support.html" class="inline-flex items-center justify-center rounded-md border border-[#b9c7dc] px-6 py-3 text-[15px] font-extrabold text-[#080b3f] hover:border-[#f26522] hover:text-[#f26522]">Explore support</a>
+                    </div>
+                </div>
+                <div class="rounded-2xl border border-[#dbe7f5] bg-[#f8fbff] p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+                    <div class="mb-5 flex items-center justify-between border-b border-[#dbe7f5] pb-4">
+                        <span class="text-[13px] font-extrabold uppercase tracking-[0.14em] text-[#64748b]">Featured resource area</span>
+                        <span class="h-3 w-3 rounded-full" style="background:#f26522"></span>
+                    </div>
+                    <div class="space-y-4 text-[17px] font-bold leading-snug text-[#080b3f]">
+                        <p>Build product confidence with training resources designed for different roles and learning styles.</p>
+                        <div class="rounded-xl bg-white p-4 text-[14px] font-semibold leading-relaxed text-[#4a5870] border border-[#e6edf7]">This page now opens directly to its own resource content, not the homepage hero.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CventIQ Section -->
+    <div class="px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto mt-6">
+        <section class="rounded-[2rem] text-white relative flex flex-col md:flex-row items-center overflow-visible shadow-lg" style="background: linear-gradient(135deg, #004b87 0%, #f26522 100%); min-height: 400px;">
+            <!-- Left: Image -->
+            <div class="md:w-1/2 w-full relative flex justify-center items-center p-6 md:p-0">
+                <img src="../assets/images/2.webp" alt="CventIQ AI" class="w-full h-auto object-contain relative z-10 md:-ml-4 lg:-ml-8" style="max-width: 580px;">
+            </div>
+            
+            <!-- Right: Content -->
+            <div class="md:w-1/2 w-full p-8 md:p-12 lg:p-16 lg:pr-24 relative z-10 flex flex-col justify-center">
+                <div class="text-[15px] font-bold tracking-[0.15em] mb-4 text-white/90 uppercase">
+                    CVENTIQ&trade;
+                </div>
+                <h2 class="text-[32px] md:text-[42px] font-bold mb-5 leading-[1.15] tracking-tight">AI for smarter events</h2>
+                <p class="text-[17px] md:text-[19px] leading-[1.5] text-white/90 mb-8 max-w-[540px] font-medium">
+                    Bringing together decades of expertise and powerful AI to help you plan, market, and host events like never before. See what's possible with CventIQ.
+                </p>
+                <div>
+                    <a href="#" class="text-white font-bold text-[17px] flex items-center hover:opacity-80 transition-opacity">
+                        Learn how AI powers CventIQ <svg class="w-5 h-5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-[#edf0f7] max-w-full px-4 sm:px-6 lg:px-8 mt-0">
+        <div class="max-w-[1200px] mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <!-- Left: Real image collage -->
+                <div class="md:w-[50%] mb-10 md:mb-0">
+                    <img src="../assets/images/3.webp" alt="Cvent event management collage"
+                        class="w-full h-auto rounded-xl">
+                </div>
+                <!-- Stats -->
+                <div class="md:w-[50%] md:pl-8">
+                    <div class="grid grid-cols-2 gap-y-12 gap-x-10">
+                        <div>
+                            <div class="text-[42px] font-medium text-brand-dark mb-1">8M+</div>
+                            <div class="text-[15px] text-gray-800 tracking-wide font-medium">events managed</div>
+                        </div>
+                        <div>
+                            <div class="text-[42px] font-medium text-brand-dark mb-1">350M+</div>
+                            <div class="text-[15px] text-gray-800 tracking-wide font-medium">registrations processed
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-[42px] font-medium text-brand-dark mb-1">1K+</div>
+                            <div class="text-[15px] text-gray-800 tracking-wide font-medium">5-star ratings on G2</div>
+                        </div>
+                        <div>
+                            <div class="text-[42px] font-medium text-brand-dark mb-1">24/7</div>
+                            <div class="text-[15px] text-gray-800 tracking-wide font-medium">customer support</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Hero Section -->
+    <section class="academy-hero-gradient py-12 md:py-20 px-6 relative overflow-hidden">
+        <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
+            <!-- Left Text -->
+            <div class="md:w-1/2 text-white">
+                <span class="bg-black/20 text-white text-[11px] font-bold px-3 py-1 rounded-sm uppercase tracking-widest mb-6 inline-block backdrop-blur-sm border border-white/10">CVENT ACADEMY</span>
+                <h1 class="text-4xl md:text-[44px] font-bold mb-4 leading-tight">Level up your Cvent expertise</h1>
+                <p class="text-lg md:text-xl text-white/90 font-light bg-black/10 px-4 py-2 inline-block border-l-4 border-white/30 backdrop-blur-sm">Get the most from your Cvent products with a variety of training resources.</p>
+            </div>
+            
+            <!-- Right Card -->
+            <div class="md:w-1/2 w-full flex justify-end">
+                <div class="bg-white rounded-lg shadow-2xl w-full max-w-[500px] overflow-hidden flex flex-row items-center relative aspect-[2/1] pl-8">
+                    <!-- Dots Graphic bottom left -->
+                    <div class="absolute bottom-4 left-4 grid grid-cols-4 gap-1 opacity-20 text-[#f26522]">
+                        <div class="w-1.5 h-1.5 bg-current rounded-full"></div><div class="w-1.5 h-1.5 bg-current rounded-full"></div><div class="w-1.5 h-1.5 bg-current rounded-full"></div><div class="w-1.5 h-1.5 bg-current rounded-full"></div>
+                        <div class="w-1.5 h-1.5 bg-current rounded-full"></div><div class="w-1.5 h-1.5 bg-current rounded-full"></div><div class="w-1.5 h-1.5 bg-current rounded-full"></div><div class="w-1.5 h-1.5 bg-current rounded-full"></div>
+                    </div>
+                    <!-- Stripes Graphic bottom right -->
+                    <div class="absolute bottom-4 right-4 flex space-x-1 opacity-20 text-[#f26522]">
+                        <div class="w-1 h-8 bg-current"></div><div class="w-1 h-8 bg-current"></div><div class="w-1 h-8 bg-current"></div>
+                    </div>
+
+                    <div class="w-1/2 relative z-10">
+                        <h3 class="text-[22px] font-light text-gray-800 leading-tight">GROW YOUR<br><span class="font-bold text-[#f26522]">SUCCESS WITH</span></h3>
+                    </div>
+                    
+                    <div class="w-1/2 flex flex-col items-center justify-center relative z-10 space-y-4">
+                        <img src="../assets/images/logo.png" class="h-5" alt="Cvent Academy" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/4/4b/Cvent_logo.svg'">
+                        <div class="w-16 h-16 bg-[#f26522] rounded-full flex items-center justify-center text-white shadow-lg shadow-blue-500/30 cursor-pointer hover:scale-105 transition-transform">
+                            <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upgrade your Cvent skills -->
+    <section class="py-16 md:py-24 px-6 bg-white text-center">
+        <div class="max-w-[1000px] mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#0f172a] mb-4">Upgrade your Cvent skills</h2>
+            <p class="text-gray-600 mb-16 text-lg">Choose from different training types built to suit your learning style:</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                <!-- Icon 1 -->
+                <div class="flex flex-col items-center">
+                    <div class="text-[#f26522] mb-5">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-[#0f172a] leading-snug">In-person training<br>workshops</h3>
+                </div>
+                <!-- Icon 2 -->
+                <div class="flex flex-col items-center">
+                    <div class="text-[#f26522] mb-5">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-[#0f172a] leading-snug">Live and on-demand<br>webinars</h3>
+                </div>
+                <!-- Icon 3 -->
+                <div class="flex flex-col items-center">
+                    <div class="text-[#f26522] mb-5">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-[#0f172a] leading-snug">On-demand online<br>courses</h3>
+                </div>
+                <!-- Icon 4 -->
+                <div class="flex flex-col items-center">
+                    <div class="text-[#f26522] mb-5">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v8l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-[#0f172a] leading-snug">Custom training</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- With Cvent Academy, you can: -->
+    <section class="py-16 md:py-24 px-6 bg-white overflow-hidden relative">
+        <!-- Floating chat bubble decorative -->
+        <div class="absolute right-8 top-12 w-12 h-12 bg-[#f26522] rounded-full flex items-center justify-center text-white shadow-lg hidden md:flex">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+        </div>
+
+        <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center gap-16">
+            <!-- Left Content -->
+            <div class="md:w-1/2">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#0f172a] mb-8">With Cvent Academy, you can:</h2>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-gray-700 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700 font-medium">Learn more about Cvent capabilities and discover product features</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-gray-700 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700 font-medium">Get the most out of your event technology investment</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-gray-700 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700 font-medium">Boost your skills and make a bigger business impact</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-gray-700 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700 font-medium">Earn industry-recognized credentials to enhance your career</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Right Image Area -->
+            <div class="md:w-1/2 relative flex justify-center py-10 w-full">
+                <!-- Abstract Blob -->
+                <div class="absolute inset-0 blob-shape z-0"></div>
+                
+                <!-- Main Image -->
+                <div class="relative z-10 w-[80%] rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Students learning" class="w-full h-auto object-cover aspect-video">
+                </div>
+
+                <!-- Floating UI Elements -->
+                <div class="absolute top-10 right-4 md:-right-4 bg-white rounded-lg shadow-lg border border-gray-100 p-3 z-20 w-48 hidden sm:block">
+                    <div class="h-24 bg-[#f26522] rounded flex items-center justify-center mb-3">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <div class="h-2 w-3/4 bg-gray-200 rounded mb-2"></div>
+                    <div class="h-2 w-1/2 bg-gray-200 rounded mb-4"></div>
+                    <div class="flex items-center">
+                        <div class="w-5 h-5 rounded-full bg-gray-300 mr-2"></div>
+                        <div class="h-2 w-1/3 bg-gray-200 rounded"></div>
+                    </div>
+                </div>
+
+                <div class="absolute -left-6 top-1/3 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center z-20 text-[#f26522]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Targets -->
+    <section class="py-8 px-6">
+        <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Event Pro -->
+            <div class="border border-gray-200 rounded-xl p-8 hover:shadow-md transition-shadow">
+                <h3 class="text-[22px] font-bold text-[#0f172a] mb-3">Event Professionals</h3>
+                <p class="text-gray-600 mb-8 text-[15px]">Build your skills to create amazing events with Cvent.</p>
+                <a href="#" class="text-[#f26522] font-bold text-sm flex items-center hover:underline">
+                    Get started <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+            </div>
+            
+            <!-- Hospitality Pro -->
+            <div class="border border-gray-200 rounded-xl p-8 hover:shadow-md transition-shadow">
+                <h3 class="text-[22px] font-bold text-[#0f172a] mb-3">Hospitality Professionals</h3>
+                <p class="text-gray-600 mb-8 text-[15px]">Learn how to create exceptional group experiences for your guests.</p>
+                <a href="#" class="text-[#f26522] font-bold text-sm flex items-center hover:underline">
+                    Get started <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended courses -->
+    <section class="py-20 px-6 bg-white">
+        <div class="max-w-[1200px] mx-auto">
+            <h2 class="text-[32px] font-bold text-[#0f172a] mb-12 text-center">Recommended courses</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Course 1 -->
+                <div class="border border-gray-200 rounded-xl p-8 flex flex-col hover:shadow-lg transition-shadow">
+                    <h3 class="font-bold text-[18px] text-[#0f172a] mb-3 leading-snug">Event-Led Growth Masterclass & Certification</h3>
+                    <p class="text-gray-600 text-[14px] mb-8 flex-grow leading-relaxed">
+                        Master event-led growth and design your event strategy... Use code <span class="font-bold text-[#0f172a]">ELG100</span> at checkout to get 100% off!
+                    </p>
+                    <a href="#" class="text-[#f26522] font-bold text-sm flex items-center mt-auto hover:underline">
+                        Log in to enroll <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+                
+                <!-- Course 2 -->
+                <div class="border border-gray-200 rounded-xl p-8 flex flex-col hover:shadow-lg transition-shadow">
+                    <h3 class="font-bold text-[18px] text-[#0f172a] mb-3 leading-snug">Getting Started - Exhibitor Management</h3>
+                    <p class="text-gray-600 text-[14px] mb-8 flex-grow leading-relaxed">
+                        Learn how to empower exhibitors, set up virtual booths, and optimize lead capture for event success.
+                    </p>
+                    <a href="#" class="text-[#f26522] font-bold text-sm flex items-center mt-auto hover:underline">
+                        Log in to enroll <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+                
+                <!-- Course 3 -->
+                <div class="border border-gray-200 rounded-xl p-8 flex flex-col hover:shadow-lg transition-shadow">
+                    <h3 class="font-bold text-[18px] text-[#0f172a] mb-3 leading-snug">CSN for Suppliers – Getting Started</h3>
+                    <p class="text-gray-600 text-[14px] mb-8 flex-grow leading-relaxed">
+                        Learn how to create your venue and brand manage RFPs.
+                    </p>
+                    <a href="#" class="text-[#f26522] font-bold text-sm flex items-center mt-auto hover:underline">
+                        Log in to enroll <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 px-6 bg-[#fafafa] border-t border-gray-100">
+        <div class="max-w-[1200px] mx-auto text-center">
+            <h2 class="text-[32px] font-bold text-[#0f172a] mb-3">Cvent Academy helps you succeed</h2>
+            <p class="text-gray-600 mb-20 text-[15px]">Hear what our customers have to say:</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 px-4 md:px-12">
+                <!-- Testimonial 1 -->
+                <div class="text-center flex flex-col items-center">
+                    <p class="italic text-gray-700 mb-8 text-[15px] leading-relaxed max-w-sm">
+                        "We were very impressed to learn that Cvent Academy is the premier path and from the ground up focused on learning about Cvent together... What a success!"
+                    </p>
+                    <p class="font-bold text-[#0f172a] text-[14px] mb-0.5">Rachel Dailey</p>
+                    <p class="text-gray-500 text-[13px]">Event Marketing Manager, Cvent Marketing Group</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="text-center flex flex-col items-center">
+                    <p class="italic text-gray-700 mb-8 text-[15px] leading-relaxed max-w-sm">
+                        "Cvent Academy lets us build the event and hospitality of the future understanding how to work seamlessly... the best training that allows us to step into our roles quickly and securely!"
+                    </p>
+                    <p class="font-bold text-[#0f172a] text-[14px] mb-0.5">Chris Lacy</p>
+                    <p class="text-gray-500 text-[13px]">Regional Director of Revenue Management, LXR</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0b172d] text-white pt-20 pb-8 mt-auto">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <div class="flex space-x-4 mb-16">
+                <a href="#" class="hover:text-blue-400"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                <a href="#" class="hover:text-blue-400"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
+                <a href="#" class="hover:text-blue-400"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                <a href="#" class="hover:text-blue-400"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                <a href="#" class="hover:text-blue-400"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg></a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12 text-[13px]">
+                <div>
+                    <h4 class="font-bold mb-4 text-white">Sales</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#" class="hover:underline">Request a demo</a></li>
+                        <li><a href="#" class="hover:underline">Pricing</a></li>
+                        <li><a href="#" class="hover:underline">Contact sales</a></li>
+                        <li>+44 (0)808 234 4540</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-white">About</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#" class="hover:underline">Awards</a></li>
+                        <li><a href="#" class="hover:underline">Careers</a></li>
+                        <li><a href="#" class="hover:underline">Investor relations</a></li>
+                        <li><a href="#" class="hover:underline">Management team</a></li>
+                        <li><a href="#" class="hover:underline">Newsroom</a></li>
+                        <li><a href="#" class="hover:underline">Partners</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-white">Popular products</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#" class="hover:underline">Event registration</a></li>
+                        <li><a href="#" class="hover:underline">Mobile apps</a></li>
+                        <li><a href="#" class="hover:underline">Population events</a></li>
+                        <li><a href="#" class="hover:underline">Check in & badging</a></li>
+                        <li><a href="#" class="hover:underline">Webinar platform</a></li>
+                        <li><a href="#" class="hover:underline">Venue sourcing</a></li>
+                        <li><a href="#" class="hover:underline text-[#f26522] font-semibold">All products</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-white">Free resources</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#" class="hover:underline">Blog</a></li>
+                        <li><a href="#" class="hover:underline">Case studies</a></li>
+                        <li><a href="#" class="hover:underline">Hotels</a></li>
+                        <li><a href="#" class="hover:underline">Watch webinars</a></li>
+                        <li><a href="#" class="hover:underline">Find event venues</a></li>
+                        <li><a href="#" class="hover:underline">Destinations</a></li>
+                        <li><a href="#" class="hover:underline">Venues by region</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-white">Support</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#" class="hover:underline">Contact support</a></li>
+                        <li><a href="#" class="hover:underline">Community</a></li>
+                        <li><a href="#" class="hover:underline">Developer Hub</a></li>
+                        <li><a href="#" class="hover:underline">Knowledge Base</a></li>
+                        <li><a href="#" class="hover:underline">Security</a></li>
+                        <li><a href="#" class="hover:underline">Training</a></li>
+                        <li><a href="#" class="hover:underline">Log into Cvent</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-white">For suppliers & venues</h4>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><a href="#" class="hover:underline">Attract</a></li>
+                        <li><a href="#" class="hover:underline">Convert</a></li>
+                        <li><a href="#" class="hover:underline">Manage</a></li>
+                        <li><a href="#" class="hover:underline">Improve</a></li>
+                        <li><a href="#" class="hover:underline">Corporate Travel</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center text-[11px] text-gray-400">
+                <div class="mb-4 md:mb-0">
+                    <p class="mb-2">© Copyright 2026 Cvent Inc. All rights reserved. | <a href="#" class="hover:underline">LEGAL</a> | <a href="#" class="hover:underline">PRIVACY POLICY</a> | <a href="#" class="hover:underline">ACCESSIBILITY</a> | <a href="#" class="hover:underline">PRODUCT TERMS OF USE</a> | <a href="#" class="hover:underline">WEBSITE TERMS OF USE</a></p>
+                    <p class="mb-2 uppercase text-white font-semibold">YOUR PRIVACY CHOICES</p>
+                    <p>This site is protected by reCAPTCHA and the Google <a href="#" class="hover:underline">Privacy Policy</a> and <a href="#" class="hover:underline">Terms of Service</a> apply.</p>
+                </div>
+                <div class="flex items-center text-white font-semibold uppercase tracking-wider text-xs cursor-pointer hover:underline">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg> English
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+(function () {
+    function initMobileMegaMenu() {
+        document.querySelectorAll('.js-mobile-menu-toggle').forEach(function (button) {
+            if (button.dataset.mobileMenuReady === 'true') return;
+            button.dataset.mobileMenuReady = 'true';
+            var header = button.closest('header');
+            var menu = header ? header.querySelector('.js-mobile-menu') : null;
+            var openIcon = button.querySelector('.js-menu-open-icon');
+            var closeIcon = button.querySelector('.js-menu-close-icon');
+            if (!menu) return;
+
+            function setOpen(isOpen) {
+                menu.classList.toggle('hidden', !isOpen);
+                button.setAttribute('aria-expanded', String(isOpen));
+                button.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+                if (openIcon) openIcon.classList.toggle('hidden', isOpen);
+                if (closeIcon) closeIcon.classList.toggle('hidden', !isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            }
+
+            button.addEventListener('click', function () {
+                setOpen(menu.classList.contains('hidden'));
+            });
+
+            window.addEventListener('resize', function () {
+                if (window.innerWidth >= 1024) setOpen(false);
+            });
+
+            menu.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function () { setOpen(false); });
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileMegaMenu);
+    } else {
+        initMobileMegaMenu();
+    }
+})();
+</script>
+</body>
+</html>

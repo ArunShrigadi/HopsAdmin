@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cvent Admin Editor — Studio Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  
+  :root {
+    --font-head: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --bg-main: #06070a;
+    --bg-side: #0a0c10;
+    --bg-canvas: #0c0e14;
+    --border-color: rgba(255, 255, 255, 0.05);
+    --border-color-active: rgba(255, 255, 255, 0.12);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #475569;
+    --accent-blue: #3b82f6;
+    --accent-purple: #8b5cf6;
+    --accent-grad: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #8b5cf6 100%);
+  }
+
+  html,body{
+    height:100%;
+    overflow:hidden;
+    font-family: var(--font-body);
+    background: var(--bg-main);
+    color: var(--text-primary);
+  }
+
+  ::-webkit-scrollbar{width:6px;height:6px}
+  ::-webkit-scrollbar-track{background:transparent}
+  ::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.07);border-radius:9px}
+  ::-webkit-scrollbar-thumb:hover{background:rgba(255, 255, 255, 0.15)}
+
+  #shell{display:flex;height:100vh;overflow:hidden;position:relative}
+
+  /* ── Sidebar (Left Panel) ── */
+  #sb{
+    width:260px;
+    min-width:260px;
+    background: var(--bg-side);
+    border-right:1px solid var(--border-color);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    z-index: 10;
+  }
+  .sb-top{
+    padding:20px 16px 16px;
+    border-bottom:1px solid var(--border-color);
+  }
+  .sb-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .sb-logo .ico{
+    width:36px;
+    height:36px;
+    border-radius:10px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-color);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .sb-logo .lbl{
+    font-family: var(--font-head);
+    font-size:13.5px;
+    font-weight:700;
+    color: var(--text-primary);
+    letter-spacing:-0.01em;
+  }
+  .sb-logo .sub{
+    font-size:10px;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  
+  .sb-search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .sb-search-wrap svg {
+    position: absolute;
+    left: 10px;
+    width: 14px;
+    height: 14px;
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+  .sb-search{
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius:8px;
+    padding:8px 10px 8px 30px;
+    color: var(--text-primary);
+    font-size:12.5px;
+    outline:none;
+    width:100%;
+    font-family:inherit;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .sb-search:focus{
+    border-color: var(--accent-blue);
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.15);
+  }
+  .sb-search::placeholder{color: var(--text-muted)}
+  
+  #tree{
+    flex:1;
+    overflow-y:auto;
+    padding:10px 8px;
+  }
+  
+  /* File Tree & Folders */
+  .folder{
+    margin-bottom:6px;
+  }
+  .fh{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    color: var(--text-secondary);
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    user-select:none;
+    transition: all 0.15s ease;
+  }
+  .fh:hover{
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-primary);
+  }
+  .fh .arr{
+    font-size:7px;
+    transition: transform .2s cubic-bezier(0.16, 1, 0.3, 1);
+    color: var(--text-muted);
+    display: inline-block;
+  }
+  .fh.open .arr{
+    transform:rotate(90deg);
+    color: var(--text-secondary);
+  }
+  .fh svg.f-ic {
+    width: 14px;
+    height: 14px;
+    color: var(--text-muted);
+  }
+  .fh:hover svg.f-ic {
+    color: var(--accent-blue);
+  }
+  .ff{
+    padding-left:12px;
+    margin-top: 2px;
+    display:none;
+    border-left: 1px dashed rgba(255, 255, 255, 0.04);
+    margin-left: 14px;
+  }
+  .fh.open+.ff{display:block}
+  
+  .pi{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    color: var(--text-secondary);
+    font-size:12.5px;
+    font-weight:500;
+    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    margin-bottom: 2px;
+    position: relative;
+  }
+  .pi:hover{
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+  }
+  .pi.on{
+    background: rgba(59, 130, 246, 0.08);
+    color: var(--accent-blue);
+    font-weight:600;
+  }
+  .pi::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20%;
+    bottom: 20%;
+    width: 2px;
+    background-color: var(--accent-blue);
+    border-radius: 99px;
+    transform: scaleX(0);
+    transition: transform 0.2s;
+  }
+  .pi.on::before {
+    transform: scaleX(1);
+  }
+  .pi svg.pi-ic-svg {
+    width: 13px;
+    height: 13px;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+  .pi:hover svg.pi-ic-svg, .pi.on svg.pi-ic-svg {
+    opacity: 0.9;
+  }
+
+  /* ── Workspace / Canvas ── */
+  #canvas{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    background: var(--bg-canvas);
+  }
+  
+  /* Top Control Bar */
+  #bar{
+    height:56px;
+    min-height:56px;
+    background: var(--bg-side);
+    border-bottom:1px solid var(--border-color);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:0 18px;
+    flex-shrink:0;
+    z-index: 9;
+  }
+  #plabel{
+    flex:1;
+    font-size:12.5px;
+    color: var(--text-secondary);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  #plabel b{
+    color: var(--text-primary);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-color);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-family: monospace;
+    font-size: 11.5px;
+  }
+  
+  /* Sleek human-designed buttons */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content: center;
+    gap:6px;
+    padding:7px 14px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:600;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink:0;
+    font-family: var(--font-head);
+    outline: none;
+  }
+  .btn-ghost{
+    background: rgba(255, 255, 255, 0.03);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+  }
+  .btn-ghost:hover{
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: var(--text-primary);
+    transform: translateY(-0.5px);
+  }
+  .btn-ghost:active{
+    transform: translateY(0.5px);
+  }
+  .btn-blue{
+    background: var(--accent-blue);
+    color:#fff;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+  }
+  .btn-blue:hover{
+    background: var(--accent-hover);
+    box-shadow: 0 6px 18px rgba(59, 130, 246, 0.4);
+    transform: translateY(-0.5px);
+  }
+  .btn-blue:active{
+    transform: translateY(0.5px);
+  }
+  .btn-blue:disabled{
+    background: rgba(255, 255, 255, 0.03);
+    border-color: var(--border-color);
+    color: var(--text-muted);
+    cursor:not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+  
+  /* Figma-like stage wrapping preview */
+  #fw{
+    flex:1;
+    position:relative;
+    overflow:hidden;
+    background: #08090d;
+    background-image: 
+      radial-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+      radial-gradient(rgba(255, 255, 255, 0.01) 1.5px, transparent 1.5px);
+    background-size: 24px 24px, 48px 48px;
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #ifr{
+    width:100%;
+    height:100%;
+    border:1px solid rgba(255, 255, 255, 0.08);
+    border-radius:16px;
+    background:#fff;
+    display:none;
+    box-shadow: 
+      0 0 1px rgba(255, 255, 255, 0.1) inset,
+      0 20px 60px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+  }
+  
+  #empty{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    color: var(--text-secondary);
+    text-align:center;
+    gap:14px;
+    padding:32px;
+    z-index: 2;
+  }
+  #empty .ic{
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+    color: var(--text-muted);
+  }
+  #empty h3{
+    font-family: var(--font-head);
+    font-size:18px;
+    font-weight:700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+  #empty p{
+    font-size:13px;
+    line-height:1.6;
+    max-width:340px;
+    color: var(--text-secondary);
+  }
+  
+  #ldr{
+    position:absolute;
+    inset:0;
+    background:#08090d;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    z-index: 50;
+  }
+  #ldr .sp{
+    width:36px;
+    height:36px;
+    border:3px solid rgba(255, 255, 255, 0.05);
+    border-top-color: var(--accent-blue);
+    border-radius:50%;
+    animation:spin .75s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+  }
+  #ldr p{
+    font-size:12.5px;
+    color: var(--text-secondary);
+    font-weight:500;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Right Panel (Content Editor) ── */
+  #panel{
+    width:320px;
+    min-width:320px;
+    background: var(--bg-side);
+    border-left:1px solid var(--border-color);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    z-index: 10;
+  }
+  .ph{
+    padding:20px 18px 16px;
+    border-bottom:1px solid var(--border-color);
+    flex-shrink:0;
+  }
+  .ph h2{
+    font-family: var(--font-head);
+    font-size:14px;
+    font-weight:700;
+    color: var(--text-primary);
+    margin-bottom:3px;
+    letter-spacing: -0.01em;
+  }
+  .ph p{
+    font-size:11.5px;
+    color: var(--text-secondary);
+  }
+  
+  .tabs{
+    display:flex;
+    border-bottom:1px solid var(--border-color);
+    flex-shrink:0;
+    padding: 0 10px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+  .tab{
+    flex:1;
+    padding:11px 4px;
+    font-size:12px;
+    font-weight:600;
+    text-align:center;
+    cursor:pointer;
+    border:none;
+    background:transparent;
+    color: var(--text-secondary);
+    border-bottom:2px solid transparent;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: var(--font-head);
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .tab:hover {
+    color: var(--text-primary);
+  }
+  .tab.on{
+    color: var(--accent-blue);
+    border-bottom-color: var(--accent-blue);
+  }
+  
+  #pbody{
+    flex:1;
+    overflow-y:auto;
+    padding:16px 18px;
+  }
+
+  /* Editor Fields & Controls */
+  .fl{
+    font-size:10px;
+    font-weight:700;
+    color: var(--text-secondary);
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .fg{
+    margin-bottom:18px;
+  }
+  .ei{
+    width:100%;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border-color);
+    border-radius:10px;
+    padding:10px 12px;
+    color: var(--text-primary);
+    font-size:13px;
+    outline:none;
+    resize:vertical;
+    font-family: var(--font-body);
+    line-height:1.5;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .ei:focus{
+    border-color: var(--accent-blue);
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.12);
+  }
+  .ei::placeholder{color: var(--text-muted)}
+  
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    padding:3px 8px;
+    border-radius:6px;
+    font-size:10.5px;
+    font-weight:700;
+    font-family: var(--font-head);
+  }
+  .pill-tag{
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-family: monospace;
+  }
+  .pill-text{
+    background: rgba(59, 130, 246, 0.08);
+    color: var(--accent-blue);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+  }
+  .pill-img{
+    background: rgba(139, 92, 246, 0.08);
+    color: var(--accent-purple);
+    border: 1px solid rgba(139, 92, 246, 0.15);
+  }
+
+  .abtn{
+    width:100%;
+    padding:11px;
+    border-radius:10px;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    border:1px solid transparent;
+    font-family: var(--font-head);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .abtn-blue{
+    background: var(--accent-blue);
+    color:#fff;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+  }
+  .abtn-blue:hover{
+    background: var(--accent-hover);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+    transform: translateY(-0.5px);
+  }
+  .abtn-blue:active{
+    transform: translateY(0.5px);
+  }
+  .abtn-purple{
+    background: var(--accent-purple);
+    color:#fff;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+  }
+  .abtn-purple:hover{
+    background: #7c3aed;
+    box-shadow: 0 6px 16px rgba(139, 92, 246, 0.3);
+    transform: translateY(-0.5px);
+  }
+  .abtn-purple:active{
+    transform: translateY(0.5px);
+  }
+  .abtn.success{
+    background:#16a34a!important;
+    color:#fff!important;
+    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2);
+  }
+  
+  .apply-ok{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background: rgba(22, 163, 74, 0.06);
+    border: 1px solid rgba(22, 163, 74, 0.2);
+    color: #4ade80;
+    border-radius:10px;
+    padding:10px 14px;
+    font-size:12px;
+    font-weight:500;
+    margin-top:12px;
+    line-height: 1.4;
+    animation: slide-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .apply-ok.hidden{display:none}
+
+  /* Image Previews & Upload Dropzone */
+  .imgprev{
+    width:100%;
+    aspect-ratio:16/9;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius:10px;
+    overflow:hidden;
+    border: 1px solid var(--border-color);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:10px;
+    position: relative;
+  }
+  .imgprev img{width:100%;height:100%;object-fit:cover}
+  .imgprev .ph2{color: var(--text-muted);font-size:12px;font-weight:500}
+  
+  .gal{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
+  }
+  .gi{
+    aspect-ratio:1;
+    border-radius:8px;
+    overflow:hidden;
+    cursor:pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .gi:hover{
+    border-color: var(--accent-blue);
+    transform: scale(1.03);
+  }
+  .gi.sel{
+    border-color:#ef4444;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+  }
+  .gi img{width:100%;height:100%;object-fit:cover}
+  
+  .ul-zone{
+    border: 1.5px dashed var(--border-color);
+    border-radius:10px;
+    padding:16px 12px;
+    text-align:center;
+    cursor:pointer;
+    font-size:12.5px;
+    color: var(--text-secondary);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    display:block;
+    background: rgba(0, 0, 0, 0.1);
+  }
+  .ul-zone:hover{
+    border-color: var(--accent-blue);
+    color: var(--text-primary);
+    background: rgba(59, 130, 246, 0.03);
+  }
+  .ul-zone input{display:none}
+  .ul-zone small{
+    display:block;
+    margin-top:4px;
+    font-size:10px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  hr.d{border:none;border-top:1px solid var(--border-color);margin:14px 0}
+
+  /* Changes Queue */
+  .chi{
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius:10px;
+    padding:10px 12px;
+    margin-bottom:8px;
+    position:relative;
+    transition: all 0.2s;
+  }
+  .chi:hover {
+    border-color: var(--border-color-active);
+    background: rgba(0, 0, 0, 0.25);
+  }
+  .chi::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    bottom: 10px;
+    width: 3px;
+    border-radius: 99px;
+  }
+  .chi.text::before { background-color: var(--accent-blue); }
+  .chi.image::before { background-color: var(--accent-purple); }
+  
+  .chi .ct{
+    font-size:9.5px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    margin-bottom:4px;
+  }
+  .chi.text .ct{color: var(--accent-blue)}
+  .chi.image .ct{color: var(--accent-purple)}
+  
+  .chi .cv{
+    font-size:12px;
+    color: var(--text-secondary);
+    word-break:break-word;
+    line-height:1.4;
+    padding-right:24px;
+  }
+  .chi .cr{
+    position:absolute;
+    top:9px;
+    right:9px;
+    background: rgba(239, 68, 68, 0.08);
+    border: none;
+    color:#f87171;
+    width:20px;
+    height:20px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: all 0.15s;
+    outline: none;
+  }
+  .chi .cr:hover{
+    background: rgba(239, 68, 68, 0.25);
+    color: #ff8787;
+  }
+  
+  .nosel{
+    text-align:center;
+    padding:36px 14px;
+    color: var(--text-muted);
+  }
+  .nosel .ic{
+    font-size:24px;
+    opacity:.4;
+    margin-bottom:10px;
+  }
+  .nosel h4{
+    font-family: var(--font-head);
+    font-size:13px;
+    font-weight:700;
+    color: var(--text-secondary);
+    margin-bottom:4px;
+  }
+  .nosel p{
+    font-size:12px;
+    line-height:1.5;
+  }
+  
+  /* Badge badge counters */
+  .cb{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background: var(--accent-blue);
+    color:#fff;
+    border-radius:99px;
+    font-size:9.5px;
+    font-weight:700;
+    padding:0 5px;
+    min-width:16px;
+    height:15px;
+    margin-left:4px;
+    box-shadow: 0 2px 5px rgba(59, 130, 246, 0.3);
+  }
+
+  /* ── Ultra-Premium Glass Toast ── */
+  #toast{
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    z-index:99999;
+    background: rgba(13, 16, 24, 0.85);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+    padding:12px 20px;
+    border-radius:12px;
+    font-size:13px;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    transform:translateY(80px);
+    opacity:0;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 
+      0 0 1px rgba(255, 255, 255, 0.1) inset,
+      0 12px 36px rgba(0,0,0,0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    pointer-events:none;
+    max-width:380px;
+  }
+  #toast.show{transform:translateY(0);opacity:1}
+  #toast.err{border-color: rgba(239, 68, 68, 0.2);color:#fca5a5}
+  #toast.warn{border-color: rgba(245, 158, 11, 0.2);color:#fbc02d}
+  #toast #tico {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    font-size: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div id="shell">
+
+  <!-- SIDEBAR (Left Panel) -->
+  <aside id="sb">
+    <div class="sb-top">
+      <div class="sb-logo">
+        <div class="ico">
+          <!-- Geometric Pen Logo matching login -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 2H5C3.34315 2 2 3.34315 2 5V19C2 20.6569 3.34315 22 5 22H19C20.6569 22 22 20.6569 22 19V13" stroke="url(#logo-grad3)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M9 15H12L21 6L18 3L9 12V15Z" stroke="url(#logo-grad3)" stroke-width="2.5" stroke-linejoin="round" fill="url(#logo-grad3)" fill-opacity="0.1"/>
+            <defs>
+              <linearGradient id="logo-grad3" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#3b82f6"/>
+                <stop offset="100%" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div>
+          <div class="lbl">Cvent Studio</div>
+          <div class="sub">Content Console</div>
+        </div>
+      </div>
+      <div class="sb-search-wrap">
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input class="sb-search" type="text" placeholder="Search pages…" oninput="filterPages(this.value)">
+      </div>
+    </div>
+    <div id="tree">
+      <div class="nosel"><p>Loading index…</p></div>
+    </div>
+  </aside>
+
+  <!-- WORKSPACE CANVAS (Middle Viewport) -->
+  <main id="canvas">
+    <div id="bar">
+      <div id="plabel">Select a website page to begin</div>
+      
+      <!-- Visit live page -->
+      <button id="btn-visit" class="btn btn-ghost" style="display:none" onclick="visitLive()" title="Open the live page in a new tab">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+        </svg>
+        View Live
+      </button>
+      
+      <!-- Revert Restore -->
+      <button id="btn-restore" class="btn btn-ghost" style="display:none" onclick="restorePage()" title="Revert to original backup">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/>
+        </svg>
+        Restore Backup
+      </button>
+      
+      <!-- Save All -->
+      <button id="btn-save" class="btn btn-blue" disabled onclick="saveAll()">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+        </svg>
+        Save Changes <span id="scnt" class="cb" style="display:none">0</span>
+      </button>
+      
+      <!-- Logout -->
+      <button class="btn btn-ghost" onclick="logout()" title="Sign out console" style="padding: 7px 10px;">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="fw">
+      <!-- Empty workspace state -->
+      <div id="empty">
+        <div class="ic">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3>No Page Selected</h3>
+        <p>Choose any webpage from the directory on the left. It will load in interactive Edit Mode inside this workspace. Click directly on text or images to rewrite them.</p>
+      </div>
+      
+      <div id="ldr">
+        <div class="sp"></div>
+        <p>In-stream preview initializing…</p>
+      </div>
+      
+      <iframe id="ifr" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
+    </div>
+  </main>
+
+  <!-- EDITOR SIDE PANEL (Right controls) -->
+  <aside id="panel">
+    <div class="ph">
+      <h2>Element Studio</h2>
+      <p>Click on any text or image in the preview stage</p>
+    </div>
+    
+    <div class="tabs">
+      <button class="tab on" data-tab="element" onclick="setTab('element')">Focus Inspector</button>
+      <button class="tab" data-tab="changes" onclick="setTab('changes')">Queue <span id="cbadge" class="cb" style="display:none">0</span></button>
+      <button class="tab" data-tab="images" onclick="setTab('images')">Media Vault</button>
+    </div>
+
+    <div id="pbody">
+
+      <!-- SELECTED ELEMENT TAB -->
+      <div id="tab-element">
+        <div id="hint" class="nosel">
+          <div class="ic">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/>
+            </svg>
+          </div>
+          <h4>Inspector Empty</h4>
+          <p>Hover and click on any outline block in the preview window to open its editor panel here.</p>
+        </div>
+
+        <div id="el-ed" style="display:none">
+          <!-- Text Editing form -->
+          <div id="txt-ed">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px">
+              <span class="pill pill-tag" id="el-tag">p</span>
+              <span class="pill pill-text">📝 Text Node</span>
+            </div>
+            <div class="fg">
+              <div class="fl">Edit Content Value</div>
+              <textarea class="ei" id="txt-val" rows="5" placeholder="Enter new text content…"></textarea>
+            </div>
+            <button class="abtn abtn-blue" id="apply-text-btn" onclick="applyText()">✓ Queue Changes &nbsp;(Ctrl+Enter)</button>
+            <div class="apply-ok hidden" id="apply-text-ok">✓ Element queued! Push live using "Save Changes" at the top.</div>
+          </div>
+
+          <!-- Image Editing form -->
+          <div id="img-ed" style="display:none">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px">
+              <span class="pill pill-tag">img</span>
+              <span class="pill pill-img">🖼 Image Asset</span>
+            </div>
+            <div class="fg">
+              <div class="fl">Selected Asset</div>
+              <div class="imgprev">
+                <img id="cur-img" src="" alt="" style="display:none">
+                <span class="ph2" id="no-img">No Image Node</span>
+              </div>
+            </div>
+            <div class="fg">
+              <div class="fl">Accessibility Alt Text</div>
+              <input class="ei" id="img-alt" type="text" placeholder="Describe this asset image…">
+            </div>
+            <div class="fg">
+              <div class="fl">Upload Replacer File</div>
+              <label class="ul-zone">
+                <input type="file" accept="image/*" onchange="uploadAndPick(event)">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="margin: 0 auto 6px;color:var(--text-secondary)">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                </svg>
+                Upload to Host<small>PNG · JPG · WEBP · max 10MB</small>
+              </label>
+            </div>
+            <div class="fg">
+              <div class="fl">Or Choose from Assets</div>
+              <div id="ing" class="gal" style="max-height:160px;overflow-y:auto"></div>
+            </div>
+            <button class="abtn abtn-purple" id="apply-img-btn" onclick="applyImage()">✓ Queue Image</button>
+            <div class="apply-ok hidden" id="apply-img-ok">✓ Asset queued! Push live using "Save Changes" at the top.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHANGES LIST TAB -->
+      <div id="tab-changes" style="display:none">
+        <div id="no-ch" class="nosel">
+          <div class="ic">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+            </svg>
+          </div>
+          <h4>No Pending Actions</h4>
+          <p>Your queued editor edits will show up here. Save all of them back to the disk in a single batch.</p>
+        </div>
+        <div id="chlist"></div>
+        <div id="ch-act" style="display:none;margin-top:12px">
+          <button class="abtn abtn-blue" onclick="saveAll()">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+            </svg>
+            Save All Changes
+          </button>
+          <button class="abtn" style="background:rgba(255,255,255,0.03);border:1px solid var(--border-color);color:var(--text-secondary);margin-top:8px" onclick="clearAll()">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+            </svg>
+            Empty Workspace Queue
+          </button>
+        </div>
+      </div>
+
+      <!-- MEDIA VAULT TAB -->
+      <div id="tab-images" style="display:none">
+        <div class="fg">
+          <div class="fl">Add Image Asset</div>
+          <label class="ul-zone">
+            <input type="file" accept="image/*" onchange="globalUpload(event)">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="margin: 0 auto 6px;color:var(--text-secondary)">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            Upload to /assets/images/<small>Saves to global server assets</small>
+          </label>
+        </div>
+        <div class="fl" style="margin-bottom:8px">Vault Library</div>
+        <div id="gallib" class="gal"></div>
+      </div>
+
+    </div>
+  </aside>
+</div>
+
+<!-- Premium Toast Notifications -->
+<div id="toast">
+  <span id="tico">✓</span>
+  <span id="tmsg"></span>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════
+   AUTH — check token on load, redirect to /login if missing
+   (Logic preserved strictly to keep authentication fully secure)
+   ══════════════════════════════════════════════════════════════════ */
+const origin = window.location.origin;
+const isFileProtocol = origin.startsWith('file') || origin === 'null' || !origin;
+const baseUrl = isFileProtocol ? 'http://localhost:3737' : '';
+
+const TOKEN = localStorage.getItem('cvntToken');
+if (!TOKEN) { window.location.href = isFileProtocol ? 'http://localhost:3737/login' : '/login'; }
+
+function authHeaders() {
+  return { 'Content-Type': 'application/json', 'x-admin-token': TOKEN };
+}
+async function api(url, opts = {}) {
+  opts.headers = { ...authHeaders(), ...(opts.headers || {}) };
+  const r = await fetch(baseUrl + url, opts);
+  if (r.status === 401) {
+    localStorage.removeItem('cvntToken');
+    window.location.href = isFileProtocol ? 'http://localhost:3737/login' : '/login';
+    return null;
+  }
+  return r;
+}
+
+async function logout() {
+  try { await api('/api/logout', { method: 'POST' }); } catch {}
+  localStorage.removeItem('cvntToken');
+  window.location.href = isFileProtocol ? 'http://localhost:3737/login' : '/login';
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   STATE
+   ══════════════════════════════════════════════════════════════════ */
+let currentPage = null;
+let selId       = null;
+let selType     = null;
+let selTag      = null;
+let selTagIdx   = null;
+let pendingSrc  = null;
+let changes     = [];
+let allPages    = {};
+let gallery     = [];
+
+/* ══════════════════════════════════════════════════════════════════
+   BOOT
+   ══════════════════════════════════════════════════════════════════ */
+window.addEventListener('load', async () => {
+  await loadPages();
+  await loadGallery();
+  window.addEventListener('message', onMsg);
+});
+
+/* ══════════════════════════════════════════════════════════════════
+   PAGE TREE
+   ══════════════════════════════════════════════════════════════════ */
+async function loadPages() {
+  try {
+    const r = await api('/api/pages');
+    if (!r) return;
+    allPages = await r.json();
+    renderTree(allPages);
+  } catch {
+    document.getElementById('tree').innerHTML = `
+      <div class="nosel">
+        <svg width="24" height="24" fill="none" stroke="#ef4444" stroke-width="2" viewBox="0 0 24 24" style="margin:0 auto 10px">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+        <p style="color:#fca5a5">Connection Offline</p>
+      </div>
+    `;
+  }
+}
+
+// Gorgeous SVG icons for folders representing folders
+const FOLDER_SVGS = {
+  root: `<svg class="f-ic" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
+  products: `<svg class="f-ic" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>`,
+  resources: `<svg class="f-ic" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>`,
+  'event-types': `<svg class="f-ic" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"/></svg>`
+};
+
+function renderTree(tree, filter = '') {
+  const c = document.getElementById('tree');
+  c.innerHTML = '';
+  for (const [folder, pages] of Object.entries(tree)) {
+    const shown = filter
+      ? pages.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()))
+      : pages;
+    if (!shown.length) continue;
+    
+    const g = document.createElement('div');
+    g.className = 'folder';
+    
+    const h = document.createElement('div');
+    h.className = 'fh open';
+    h.innerHTML = `
+      <span class="arr">▶</span>
+      ${FOLDER_SVGS[folder] || '<svg class="f-ic" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>'}
+      <span>${folder}</span>
+      <span style="margin-left:auto;background:rgba(255,255,255,0.03);border:1px solid var(--border-color);color:var(--text-secondary);border-radius:99px;padding:1px 6px;font-size:9.5px;font-weight:700">${shown.length}</span>
+    `;
+    
+    const ff = document.createElement('div');
+    ff.className = 'ff';
+    h.addEventListener('click', () => h.classList.toggle('open'));
+    
+    for (const pg of shown) {
+      const item = document.createElement('div');
+      item.className = 'pi';
+      item.dataset.path = pg.path;
+      item.title = pg.path;
+      item.innerHTML = `
+        <svg class="pi-ic-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+        <span style="overflow:hidden;text-overflow:ellipsis">${pg.name}</span>
+      `;
+      item.addEventListener('click', () => loadPage(pg.path, item));
+      ff.appendChild(item);
+    }
+    g.appendChild(h); 
+    g.appendChild(ff); 
+    c.appendChild(g);
+  }
+}
+
+function filterPages(q) { renderTree(allPages, q.trim()); }
+
+/* ══════════════════════════════════════════════════════════════════
+   LOAD PAGE
+   ══════════════════════════════════════════════════════════════════ */
+function loadPage(pagePath, el) {
+  document.querySelectorAll('.pi').forEach(p => p.classList.remove('on'));
+  if (el) el.classList.add('on');
+
+  currentPage = pagePath;
+  selId = selType = selTag = selTagIdx = pendingSrc = null;
+  changes = [];
+  updateChangesUI();
+  resetEditor();
+
+  document.getElementById('plabel').innerHTML = `Editing Stage: <b>${pagePath}</b>`;
+  document.getElementById('btn-visit').style.display   = 'inline-flex';
+  document.getElementById('btn-restore').style.display = 'inline-flex';
+
+  const ifr   = document.getElementById('ifr');
+  const ldr   = document.getElementById('ldr');
+  const empty = document.getElementById('empty');
+
+  empty.style.display  = 'none';
+  ifr.style.display    = 'none';
+  ldr.style.display    = 'flex';
+
+  ifr.src = baseUrl + `/preview/${pagePath}?token=${TOKEN}`;
+  ifr.onload = () => { ldr.style.display = 'none'; ifr.style.display = 'block'; };
+  ifr.onerror = () => { ldr.style.display = 'none'; toast('Failed to establish stage preview', 'err'); };
+}
+
+function visitLive() {
+  if (!currentPage) return;
+  window.open(baseUrl + `/site/${currentPage}`, '_blank');
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   IFRAME MESSAGES
+   ══════════════════════════════════════════════════════════════════ */
+function onMsg(e) {
+  const m = e.data;
+  if (!m?.type) return;
+  if (m.type === 'ELEMENT_SELECTED') handleSel(m);
+}
+
+function handleSel(m) {
+  selId     = m.id;
+  selType   = m.editorType;
+  selTag    = m.tag    || m.tagName;
+  selTagIdx = m.tagIdx;
+
+  setTab('element');
+  document.getElementById('hint').style.display    = 'none';
+  document.getElementById('el-ed').style.display   = 'block';
+
+  if (selType === 'text') {
+    document.getElementById('txt-ed').style.display = 'block';
+    document.getElementById('img-ed').style.display = 'none';
+    document.getElementById('el-tag').textContent   = `<${m.tagName}>`;
+    const ta = document.getElementById('txt-val');
+    ta.value = m.text;
+    setTimeout(() => ta.focus(), 50);
+  } else {
+    document.getElementById('txt-ed').style.display = 'none';
+    document.getElementById('img-ed').style.display = 'block';
+    document.getElementById('img-alt').value = m.alt || '';
+    pendingSrc = m.src || null;
+    setImgPreview(m.src);
+    renderInlineGallery();
+  }
+}
+
+function resetEditor() {
+  document.getElementById('hint').style.display    = 'block';
+  document.getElementById('el-ed').style.display   = 'none';
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   APPLY CHANGES  (queues for save, live-previews in iframe)
+   ══════════════════════════════════════════════════════════════════ */
+function applyText() {
+  try {
+    const newText = document.getElementById('txt-val').value.trim();
+    if (!newText)       { toast('Text box cannot be empty', 'warn'); return; }
+    if (!selId)         { toast('Select a staging block first', 'warn'); return; }
+    if (selTagIdx == null) { toast('Synchronizing target failed, re-select element', 'err'); return; }
+
+    changes = changes.filter(c => c.id !== selId);
+    changes.push({
+      id:     selId,
+      type:   'text',
+      value:  newText,
+      tag:    selTag,
+      tagIdx: selTagIdx,
+      label:  newText.slice(0, 72) + (newText.length > 72 ? '…' : '')
+    });
+
+    sendToIframe({ type: 'PREVIEW_TEXT', id: selId, text: newText });
+    updateChangesUI();
+
+    const btn = document.getElementById('apply-text-btn');
+    const ok  = document.getElementById('apply-text-ok');
+    btn.classList.add('success');
+    btn.textContent = '✓ Applied to Stage!';
+    ok.classList.remove('hidden');
+    setTimeout(() => {
+      btn.classList.remove('success');
+      btn.innerHTML = '✓ Queue Changes &nbsp;(Ctrl+Enter)';
+    }, 1400);
+
+    setTab('changes');
+
+  } catch(err) {
+    console.error('[applyText]', err);
+    toast('Staging failed: ' + err.message, 'err');
+  }
+}
+
+function applyImage() {
+  try {
+    if (!pendingSrc)       { toast('Select or upload a target image first', 'warn'); return; }
+    if (!selId)            { toast('Select an image frame inside stage first', 'warn'); return; }
+    if (selTagIdx == null) { toast('Synchronizing target image failed', 'err'); return; }
+
+    const alt = document.getElementById('img-alt').value;
+    changes = changes.filter(c => c.id !== selId);
+    changes.push({
+      id:     selId,
+      type:   'image',
+      value:  pendingSrc,
+      alt,
+      tag:    'img',
+      tagIdx: selTagIdx,
+      label:  pendingSrc.split('/').pop()
+    });
+
+    sendToIframe({ type: 'PREVIEW_IMAGE', id: selId, src: pendingSrc, alt });
+    updateChangesUI();
+
+    const btn = document.getElementById('apply-img-btn');
+    const ok  = document.getElementById('apply-img-ok');
+    btn.classList.add('success');
+    btn.textContent = '✓ Image Framed!';
+    ok.classList.remove('hidden');
+    setTimeout(() => {
+      btn.classList.remove('success');
+      btn.innerHTML = '✓ Queue Image';
+    }, 1400);
+
+    setTab('changes');
+
+  } catch(err) {
+    toast('Image staging failed', 'err');
+  }
+}
+
+function sendToIframe(msg) {
+  const ifr = document.getElementById('ifr');
+  ifr.contentWindow?.postMessage(msg, '*');
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SAVE TO FILE
+   ══════════════════════════════════════════════════════════════════ */
+async function saveAll() {
+  if (!currentPage || !changes.length) return;
+  const btn = document.getElementById('btn-save');
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Committing Changes…';
+
+  try {
+    const r = await api('/api/save', {
+      method: 'POST',
+      body: JSON.stringify({ pagePath: currentPage, changes })
+    });
+    if (!r) return;
+    const data = await r.json();
+
+    if (data.success) {
+      if (data.saved === 0) {
+        toast('⚠️ Server completed save but returned 0 actions', 'warn');
+      } else {
+        toast(`✅ Successfully committed ${data.saved} change${data.saved !== 1 ? 's' : ''} to server disk`);
+        changes = [];
+        updateChangesUI();
+        document.getElementById('ifr').src = baseUrl + `/preview/${currentPage}?token=${TOKEN}`;
+        resetEditor();
+      }
+      if (data.warnings?.length) console.warn('[save warnings]', data.warnings);
+    } else {
+      toast('Commit failed: ' + (data.error || 'Server error'), 'err');
+    }
+  } catch(ex) {
+    toast('Network connection failed: ' + ex.message, 'err');
+  }
+
+  btn.disabled = !changes.length;
+  btn.innerHTML = `
+    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+    </svg>
+    Save Changes ${changes.length ? `<span class="cb">${changes.length}</span>` : ''}
+  `;
+}
+
+async function restorePage() {
+  if (!currentPage) return;
+  if (!confirm(`Restore "${currentPage}" back to its original backup?\n\nThis completely discards all modifications you saved to this page.`)) return;
+  try {
+    const r = await api('/api/restore', { method: 'POST', body: JSON.stringify({ pagePath: currentPage }) });
+    if (!r) return;
+    const data = await r.json();
+    if (data.success) {
+      toast('Page backup successfully restored');
+      changes = []; updateChangesUI(); resetEditor();
+      document.getElementById('ifr').src = baseUrl + `/preview/${currentPage}?token=${TOKEN}`;
+    } else {
+      toast(data.error || 'No system backup found', 'err');
+    }
+  } catch { toast('Restoration process crashed', 'err'); }
+}
+
+function clearAll() {
+  if (!changes.length) return;
+  if (!confirm('Discard all pending edits currently inside the editor workspace queue?')) return;
+  changes = []; updateChangesUI();
+  if (currentPage) {
+    document.getElementById('ifr').src = baseUrl + `/preview/${currentPage}?token=${TOKEN}`;
+    resetEditor();
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CHANGES UI
+   ══════════════════════════════════════════════════════════════════ */
+function updateChangesUI() {
+  const n = changes.length;
+
+  const cbadge = document.getElementById('cbadge');
+  if (cbadge) {
+    cbadge.style.display = n ? 'inline-flex' : 'none';
+    cbadge.textContent   = n;
+  }
+
+  const btn = document.getElementById('btn-save');
+  if (btn) {
+    btn.disabled  = !n;
+    btn.innerHTML = n
+      ? `
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+        </svg>
+        Save Changes <span class="cb">${n}</span>`
+      : `
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+        </svg>
+        Save Changes`;
+  }
+
+  const noCh  = document.getElementById('no-ch');
+  const chAct = document.getElementById('ch-act');
+  const list  = document.getElementById('chlist');
+  if (noCh)  noCh.style.display  = n ? 'none'  : 'block';
+  if (chAct) chAct.style.display = n ? 'block' : 'none';
+
+  if (list) {
+    list.innerHTML = '';
+    changes.forEach((c, i) => {
+      const d = document.createElement('div');
+      d.className = `chi ${c.type}`;
+      d.innerHTML = `<div class="ct">${c.type === 'text' ? '📝 Text' : '🖼 Image'}</div><div class="cv">${esc(c.label)}</div><button class="cr" onclick="rmChange(${i})">✕</button>`;
+      list.appendChild(d);
+    });
+  }
+}
+
+function rmChange(i) { changes.splice(i, 1); updateChangesUI(); }
+function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ══════════════════════════════════════════════════════════════════
+   IMAGE GALLERY
+   ══════════════════════════════════════════════════════════════════ */
+async function loadGallery() {
+  try {
+    const r = await api('/api/images');
+    if (!r) return;
+    gallery = await r.json();
+    renderMainGallery();
+  } catch {}
+}
+
+function renderMainGallery() {
+  const el = document.getElementById('gallib');
+  el.innerHTML = '';
+  for (const img of gallery) el.appendChild(makeGalItem(img, false));
+  if (!gallery.length) el.innerHTML = '<div style="color:var(--text-muted);font-size:12px;padding:24px;text-align:center;grid-column:span 3">No assets found</div>';
+}
+
+function renderInlineGallery() {
+  const el = document.getElementById('ing');
+  el.innerHTML = '';
+  for (const img of gallery) el.appendChild(makeGalItem(img, true));
+}
+
+function makeGalItem(img, inline) {
+  const d = document.createElement('div');
+  d.className = 'gi';
+  d.title     = img.name;
+  d.innerHTML = `<img src="${img.url}" alt="${img.name}" loading="lazy">`;
+  d.addEventListener('click', () => {
+    if (inline) {
+      document.querySelectorAll('#ing .gi').forEach(e => e.classList.remove('sel'));
+      d.classList.add('sel');
+      pendingSrc = img.url;
+      setImgPreview(img.url);
+    } else {
+      navigator.clipboard.writeText(img.url).catch(() => {});
+      toast('Copied URL: ' + img.name);
+    }
+  });
+  return d;
+}
+
+function setImgPreview(src) {
+  const img = document.getElementById('cur-img');
+  const ph  = document.getElementById('no-img');
+  if (src) { img.src = src; img.style.display = 'block'; ph.style.display = 'none'; }
+  else     { img.style.display = 'none'; ph.style.display = 'block'; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   IMAGE UPLOAD
+   ══════════════════════════════════════════════════════════════════ */
+async function doUpload(file) {
+  if (!file) return null;
+  const fd = new FormData();
+  fd.append('image', file);
+  try {
+    const r = await fetch(baseUrl + '/api/upload-image', {
+      method: 'POST', headers: { 'x-admin-token': TOKEN }, body: fd
+    });
+    if (r.status === 401) { window.location.href = isFileProtocol ? 'http://localhost:3737/login' : '/login'; return null; }
+    const d = await r.json();
+    return d.success ? d.webPath : null;
+  } catch { return null; }
+}
+
+async function uploadAndPick(e) {
+  const src = await doUpload(e.target.files[0]);
+  if (!src) { toast('Asset upload failed', 'err'); return; }
+  pendingSrc = src;
+  setImgPreview(src);
+  await loadGallery();
+  renderInlineGallery();
+  toast('Asset uploaded! Click Apply to complete.');
+}
+
+async function globalUpload(e) {
+  const src = await doUpload(e.target.files[0]);
+  if (src) { await loadGallery(); toast('✅ Asset uploaded: ' + src.split('/').pop()); }
+  else toast('Asset upload failed', 'err');
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   TABS
+   ══════════════════════════════════════════════════════════════════ */
+function setTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.tab === name));
+  ['element','changes','images'].forEach(t => {
+    document.getElementById(`tab-${t}`).style.display = t === name ? 'block' : 'none';
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   TOAST
+   ══════════════════════════════════════════════════════════════════ */
+let _tt;
+function toast(msg, type = 'ok') {
+  const el = document.getElementById('toast');
+  document.getElementById('tmsg').textContent = msg;
+  document.getElementById('tico').textContent = type === 'err' ? '✕' : type === 'warn' ? '⚠' : '✓';
+  el.className = type === 'ok' ? '' : type;
+  void el.offsetWidth;
+  el.classList.add('show');
+  clearTimeout(_tt);
+  _tt = setTimeout(() => el.classList.remove('show'), 4000);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   KEYBOARD SHORTCUTS
+   ══════════════════════════════════════════════════════════════════ */
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); saveAll(); }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    if (selType === 'text')  applyText();
+    if (selType === 'image') applyImage();
+  }
+});
+</script>
+</body>
+</html>

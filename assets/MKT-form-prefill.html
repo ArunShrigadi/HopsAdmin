@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://hello.cvent.com/MKT-form-prefill.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="robots" content="index, nofollow">
+    <title>DTP</title>
+
+
+
+    <style>
+        .mktoGen.mktoImg {
+            display: inline-block;
+            line-height: 0;
+        }
+    </style>
+
+
+
+<style>.mktoGen.mktoImg {display:inline-block; line-height:0;}</style>
+
+</head>
+
+<body id="bodyId">
+
+    
+
+    <div style="display:none">
+        <mktofield inputname="FirstName"></mktofield>
+        <mktofield inputname="LastName"></mktofield>
+        <mktofield inputname="Email"></mktofield>
+        <mktofield inputname="Phone"></mktofield>
+        <mktofield inputname="Title"></mktofield>
+        <mktofield inputname="Job_Function__c"></mktofield>
+        <mktofield inputname="tempImplicitOptin"></mktofield>
+        <mktofield inputname="Company"></mktofield>
+        <mktofield inputname="Country"></mktofield>
+        <mktofield inputname="State"></mktofield>
+        <mktofield inputname="Website"></mktofield>
+        <mktofield inputname="PostalCode"></mktofield>
+    </div>
+
+
+    <script>
+        var all_elements = document.getElementsByTagName("mktoField");
+        let marketo_object = {};
+        for (let item of all_elements) {
+            marketo_object[item.getAttribute("inputName")] = item.innerText;
+        }
+
+        try {
+            parent.postMessage(marketo_object, "https://www.cvent.com");
+        } catch (error) {
+            console.log(error);
+        }
+    </script>
+    
+
+    
+<script type="text/javascript" src="./stripmkttok.js.download"></script>
+
+
+
+
+</body></html>
