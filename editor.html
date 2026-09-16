@@ -1206,6 +1206,10 @@ const baseUrl = isFileProtocol ? 'http://localhost:3737' : '';
 const TOKEN = localStorage.getItem('cvntToken');
 if (!TOKEN) { window.location.href = isFileProtocol ? 'http://localhost:3737/login' : '/login'; }
 
+function getPreviewUrl(pagePath) {
+  return baseUrl + `/preview/${pagePath}?token=${TOKEN}&_cb=${Date.now()}`;
+}
+
 function authHeaders() {
   return { 'Content-Type': 'application/json', 'x-admin-token': TOKEN };
 }
@@ -1427,7 +1431,7 @@ function loadPage(pagePath, el) {
   ifr.style.display    = 'none';
   ldr.style.display    = 'flex';
 
-  ifr.src = baseUrl + `/preview/${pagePath}?token=${TOKEN}`;
+  ifr.src = getPreviewUrl(pagePath);
   ifr.onload = () => { 
     ldr.style.display = 'none'; 
     ifr.style.display = 'block'; 
@@ -1644,7 +1648,7 @@ async function saveAll() {
         toast(`✅ Successfully committed ${data.saved} change${data.saved !== 1 ? 's' : ''} to server disk`);
         changes = [];
         updateChangesUI();
-        document.getElementById('ifr').src = baseUrl + `/preview/${currentPage}?token=${TOKEN}`;
+        document.getElementById('ifr').src = getPreviewUrl(currentPage);
         resetEditor();
         resetHistory();
       }
@@ -1675,7 +1679,7 @@ async function restorePage() {
     if (data.success) {
       toast('Page backup successfully restored');
       changes = []; updateChangesUI(); resetEditor();
-      document.getElementById('ifr').src = baseUrl + `/preview/${currentPage}?token=${TOKEN}`;
+      document.getElementById('ifr').src = getPreviewUrl(currentPage);
       resetHistory();
     } else {
       toast(data.error || 'No system backup found', 'err');
@@ -1688,7 +1692,7 @@ function clearAll() {
   if (!confirm('Discard all pending edits currently inside the editor workspace queue?')) return;
   changes = []; updateChangesUI();
   if (currentPage) {
-    document.getElementById('ifr').src = baseUrl + `/preview/${currentPage}?token=${TOKEN}`;
+    document.getElementById('ifr').src = getPreviewUrl(currentPage);
     resetEditor();
   }
   pushHistory();
@@ -1743,7 +1747,7 @@ function rmChange(i) {
   changes.splice(i, 1);
   updateChangesUI();
   if (currentPage) {
-    document.getElementById('ifr').src = baseUrl + `/preview/${currentPage}?token=${TOKEN}`;
+    document.getElementById('ifr').src = getPreviewUrl(currentPage);
   }
   pushHistory();
 }
@@ -2022,7 +2026,7 @@ function undo() {
     updateChangesUI();
     
     if (currentPage) {
-      document.getElementById('ifr').src = baseUrl + `/preview/${currentPage}?token=${TOKEN}`;
+      document.getElementById('ifr').src = getPreviewUrl(currentPage);
     }
     
     if (selId) {
@@ -2052,7 +2056,7 @@ function redo() {
     updateChangesUI();
     
     if (currentPage) {
-      document.getElementById('ifr').src = baseUrl + `/preview/${currentPage}?token=${TOKEN}`;
+      document.getElementById('ifr').src = getPreviewUrl(currentPage);
     }
     
     if (selId) {

@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,22 +26,18 @@
 </head>
 <body class="antialiased bg-white flex flex-col min-h-screen">
     
-    <!-- Top Utility Bar -->
-    <div class="w-full px-4 sm:px-6 lg:px-12 py-2 flex justify-end items-center space-x-4 text-sm text-gray-600 bg-white">
-        <a href="#" class="hover:text-[#f26522]">Knowledge Base</a>
-        <a href="#" class="hover:text-[#f26522]">Training</a>
-        <a href="#" class="bg-[#f26522] text-white px-4 py-1 rounded hover:bg-[#d85218] font-bold transition-colors">LOG IN</a>
-    </div>
+    <!-- Header -->
+    <header class="bg-white border-b border-blue-200 sticky top-0 z-50">
+        <div class="max-w-[1300px] mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-12 h-full">
+                <!-- Logo -->
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <img src="../assets/images/logo.png" alt="Cvent" class="h-5" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/4/4b/Cvent_logo.svg'">
+                    <span class="text-[#f26522] font-bold text-lg tracking-wide border-l border-gray-300 pl-2 ml-2">COMMUNITY</span>
+                </a>
 
-    <!-- Main Header -->
-    <header class="w-full bg-white border-b-2 border-blue-200">
-        <div class="px-4 sm:px-6 lg:px-12 flex flex-col sm:flex-row justify-between items-center py-4">
-            <div class="flex items-center space-x-2">
-                <svg class="w-20 h-6 text-[#f26522]" viewBox="0 0 100 30" fill="currentColor"><path d="M20 15c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8-8-3.6-8-8zm12 0c0-2.2-1.8-4-4-4s-4 1.8-4 4 1.8 4 4 4 4-1.8 4-4zM1 15c0-4.4 3.6-8 8-8v4c-2.2 0-4 1.8-4 4s1.8 4 4 4v4c-4.4 0-8-3.6-8-8zM40 7h4l5 10 5-10h4L46 23h-4zM60 7h15v4H64v3h10v4H64v5h-4zM80 7h4l8 10V7h4v16h-4L84 13v10h-4zM100 7h15v4h-5v12h-4V11h-6z"/></svg>
-                <span class="text-gray-300 mx-2 text-xl font-light">|</span>
-                <span class="text-[#f26522] tracking-widest font-semibold text-lg uppercase">COMMUNITY</span>
-            </div>
-            <nav class="hidden lg:flex gap-6 text-[16px] h-full items-center">
+                <!-- Nav Links -->
+                <nav class="hidden lg:flex gap-6 text-[16px] h-full items-center">
     <!-- Products Dropdown -->
     <div class="group h-full flex items-center">
         <a href="../products/event-marketing-operations.html" class="relative h-full px-3 flex items-center gap-2 rounded-xl text-[#080b3f] font-bold transition-colors group-hover:bg-[#fff8f5] group-hover:text-[#f26522]">
@@ -90,11 +86,11 @@
                 <div class="bg-gradient-to-r from-[#fafcff] via-[#f6f9ff] to-[#dcecff] border-l border-[#e3e9f4] py-8 px-8">
                     <div class="flex items-center gap-3 mb-4 text-[18px] font-extrabold text-[#6d7484]"><svg class="w-4 h-4 text-[#f26522]" fill="currentColor" viewBox="0 0 20 20"><path d="m10 1.6 2.5 5.1 5.6.8-4 4 1 5.5-5.1-2.7L4.9 17l1-5.5-4-4 5.6-.8L10 1.6z"></path></svg>Featured</div>
                     <div class="space-y-3">
-                        <a href="../products/event-marketing-operations.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#e65c00] via-[#004b87] to-[#f26522]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><circle cx="24" cy="24" r="16" stroke-dasharray="5 5"></circle><path d="M24 12v24M16 24h16"></path></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">Event management</strong><span class="text-[13px] text-[#1f285c]">Manage your entire event lifecycle</span></span></span></a>
-                        <a href="../products/event-marketing-operations.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#e65c00] via-[#004b87] to-[#f26522]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><path d="M24 7 8 17l16 10 16-10L24 7z"></path><path d="M12 25v10l12 6 12-6V25"></path></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">Event marketing</strong><span class="text-[13px] text-[#1f285c]">Turn events into your top marketing channel</span></span></span></a>
-                        <a href="../products/cvent-events-plus.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#e65c00] via-[#004b87] to-[#f26522]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><path d="M10 35c4-7 24-7 28 0"></path><circle cx="16" cy="18" r="5"></circle><circle cx="32" cy="18" r="5"></circle></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">Cvent Essentials</strong><span class="text-[13px] text-[#1f285c]">Simplify your repeatable in-person events</span></span></span></a>
-                        <a href="../products/cvent-events-plus.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#e65c00] via-[#004b87] to-[#f26522]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="currentColor"><path d="M25 6l3.6 10.4L39 20l-10.4 3.6L25 34l-3.6-10.4L11 20l10.4-3.6L25 6zM13 30l1.7 5.3L20 37l-5.3 1.7L13 44l-1.7-5.3L6 37l5.3-1.7L13 30z"></path></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">AI for events</strong><span class="text-[13px] text-[#1f285c]">Make every event smarter with CventIQ</span></span></span></a>
-                        <a href="../products/event-marketing-operations.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#e65c00] via-[#004b87] to-[#f26522]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><path d="M14 6h20v36H14z"></path><path d="M19 16h10M19 24h10M19 32h6"></path><path d="M33 17h5v12h-5"></path></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">Pricing</strong><span class="text-[13px] text-[#1f285c]">Learn about our pricing structure</span></span></span></a>
+                        <a href="../products/event-marketing-operations.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#004b87] to-[#080b25]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><circle cx="24" cy="24" r="16" stroke-dasharray="5 5"></circle><path d="M24 12v24M16 24h16"></path></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">Event management</strong><span class="text-[13px] text-[#1f285c]">Manage your entire event lifecycle</span></span></span></a>
+                        <a href="../products/event-marketing-operations.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#004b87] to-[#080b25]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><path d="M24 7 8 17l16 10 16-10L24 7z"></path><path d="M12 25v10l12 6 12-6V25"></path></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">Event marketing</strong><span class="text-[13px] text-[#1f285c]">Turn events into your top marketing channel</span></span></span></a>
+                        <a href="../products/cvent-events-plus.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#004b87] to-[#080b25]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><path d="M10 35c4-7 24-7 28 0"></path><circle cx="16" cy="18" r="5"></circle><circle cx="32" cy="18" r="5"></circle></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">Cvent Essentials</strong><span class="text-[13px] text-[#1f285c]">Simplify your repeatable in-person events</span></span></span></a>
+                        <a href="../products/cvent-events-plus.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#004b87] to-[#080b25]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="currentColor"><path d="M25 6l3.6 10.4L39 20l-10.4 3.6L25 34l-3.6-10.4L11 20l10.4-3.6L25 6zM13 30l1.7 5.3L20 37l-5.3 1.7L13 44l-1.7-5.3L6 37l5.3-1.7L13 30z"></path></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">AI for events</strong><span class="text-[13px] text-[#1f285c]">Make every event smarter with CventIQ</span></span></span></a>
+                        <a href="../products/event-marketing-operations.html" class="flex rounded-[14px] p-[2px] bg-gradient-to-r from-[#004b87] to-[#080b25]"><span class="flex w-full items-center gap-3 rounded-[12px] bg-white px-4 py-3"><svg class="w-7 h-7 text-[#f26522]" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3"><path d="M14 6h20v36H14z"></path><path d="M19 16h10M19 24h10M19 32h6"></path><path d="M33 17h5v12h-5"></path></svg><span><strong class="block text-[20px] leading-tight text-[#080b3f]">Pricing</strong><span class="text-[13px] text-[#1f285c]">Learn about our pricing structure</span></span></span></a>
                     </div>
                 </div>
             </div>
@@ -148,6 +144,14 @@
         </div>
     </div>
 </nav>
+            </div>
+
+            <!-- Right Actions -->
+            <div class="hidden lg:flex items-center space-x-6 text-sm font-semibold">
+                <a href="#" class="text-gray-600 hover:text-brand-blue">Knowledge Base</a>
+                <a href="#" class="text-gray-600 hover:text-brand-blue">Training</a>
+                <a href="#" class="bg-[#f26522] hover:bg-[#d85218] text-white px-5 py-1.5 rounded font-bold transition-colors">Log in</a>
+            </div>
         </div>
         <!-- Mobile menu button -->
                 <div class="lg:hidden flex items-center">
@@ -255,7 +259,7 @@
 
     <!-- CventIQ Section -->
     <div class="px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto mt-6">
-        <section class="rounded-[2rem] text-white relative flex flex-col md:flex-row items-center overflow-visible shadow-lg" style="background: linear-gradient(135deg, #004b87 0%, #f26522 100%); min-height: 400px;">
+        <section class="rounded-[2rem] text-white relative flex flex-col md:flex-row items-center overflow-visible shadow-lg" style="background: linear-gradient(135deg, #004b87 0%, #080b25 100%); min-height: 400px;">
             <!-- Left: Image -->
             <div class="md:w-1/2 w-full relative flex justify-center items-center p-6 md:p-0">
                 <img src="../assets/images/2.webp" alt="CventIQ AI" class="w-full h-auto object-contain relative z-10 md:-ml-4 lg:-ml-8" style="max-width: 580px;">

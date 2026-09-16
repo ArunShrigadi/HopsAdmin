@@ -1,9 +1,8 @@
 # Node dependencies
-admin/node_modules/
 node_modules/
 
 # Environment files
-admin/.env
+.env
 
 # Logs
 *.log
@@ -11,3 +10,9 @@ admin/.env
 # OS files
 .DS_Store
 Thumbs.db
+
+# Backup files
+*.bak
+
+# Scratch/temp scripts
+scratch/
